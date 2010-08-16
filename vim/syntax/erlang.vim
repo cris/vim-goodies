@@ -39,6 +39,8 @@ if ! exists ("erlang_characters")
     " Basic elements
     syn match   erlangChar             "$\([^\\]\|\\.\)"
     syn match   erlangComment          "%.*$" contains=erlangAnnotation,erlangTodo
+    "TODO: add erlangSpec grammar
+    "syn match   erlangSpec             "^-spec "
     syn match   erlangAnnotation       " \@<=@\%(clear\|docfile\|end\|headerfile\|todo\|TODO\|type\|author\|copyright\|doc\|reference\|see\|since\|title\|version\|deprecated\|hidden\|private\|equiv\|spec\|throws\)" contained
     syn match   erlangAnnotation       "`[^']*'" contained
     syn keyword erlangTodo             TODO FIXME XXX contained
@@ -110,15 +112,23 @@ if ! exists ("erlang_functions")
     syn keyword erlangBIF        set_node
 
     " erlang:Types
-    syn keyword erlangType       term 
+    syn keyword erlangType       any term
+    " WTF?
+    syn keyword erlangType       arity identifier mfa nil none node range tid
+    syn keyword erlangType       timeout var
+    " end WTF
+    syn keyword erlangType       module
     syn keyword erlangType       atom reference pid iodata timer port
     syn keyword erlangType       number float integer
     syn keyword erlangType       non_neg_integer pos_integer neg_integer
     syn keyword erlangType       bool boolean
-    syn keyword erlangType       list nonempty_improper_list
+    syn keyword erlangType       list iolist nonempty_list
+    syn keyword erlangType       maybe_improper_list nonempty_improper_list
+    syn keyword erlangType       nonempty_maybe_improper_list
     syn keyword erlangType       tuple dict
-    syn keyword erlangType       array gb_set gb_tree queue set
-    syn keyword erlangType       string non_empty_string char binary byte
+    syn keyword erlangType       array gb_set gb_tree queue set digraph
+    syn keyword erlangType       string nonempty_string char
+    syn keyword erlangType       binary byte bitstring
     syn keyword erlangType       no_return
 
     " functions of math library
