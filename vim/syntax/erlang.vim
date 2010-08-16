@@ -37,6 +37,7 @@ syn case match
 if ! exists ("erlang_characters")
 
     " Basic elements
+    syn match   erlangChar             "$\([^\\]\|\\.\)"
     syn match   erlangComment          "%.*$" contains=erlangAnnotation,erlangTodo
     syn match   erlangAnnotation       " \@<=@\%(clear\|docfile\|end\|headerfile\|todo\|TODO\|type\|author\|copyright\|doc\|reference\|see\|since\|title\|version\|deprecated\|hidden\|private\|equiv\|spec\|throws\)" contained
     syn match   erlangAnnotation       "`[^']*'" contained
@@ -108,6 +109,18 @@ if ! exists ("erlang_functions")
     syn keyword erlangBIF        preloaded processes purge_module set_cookie
     syn keyword erlangBIF        set_node
 
+    " erlang:Types
+    syn keyword erlangType       term 
+    syn keyword erlangType       atom reference pid iodata timer port
+    syn keyword erlangType       number float integer
+    syn keyword erlangType       non_neg_integer pos_integer neg_integer
+    syn keyword erlangType       bool boolean
+    syn keyword erlangType       list nonempty_improper_list
+    syn keyword erlangType       tuple dict
+    syn keyword erlangType       array gb_set gb_tree queue set
+    syn keyword erlangType       string non_empty_string char binary byte
+    syn keyword erlangType       no_return
+
     " functions of math library
     syn keyword erlangFunction   acos asin atan atan2 cos cosh exp
     syn keyword erlangFunction   log log10 pi pow power sin sinh sqrt
@@ -126,6 +139,8 @@ if ! exists ("erlang_keywords")
     syn match   erlangDirective  "-behaviour\|-behavior"
     syn match   erlangDirective  "-compile\|-define\|-else\|-endif\|-export\|-file"
     syn match   erlangDirective  "-ifdef\|-ifndef\|-import\|-include_lib\|-include"
+    syn match   erlangDirective  "-spec\|-type"
+
     syn match   erlangDirective  "-module\|-record\|-undef"
 
     syn match   erlangConstant   "-author\|-copyright\|-doc\|-vsn"
@@ -185,6 +200,7 @@ if version >= 508 || !exists ("did_erlang_inits")
     endif
 
     " erlang_characters
+    HiLink erlangChar Special
     HiLink erlangComment Comment
     HiLink erlangAnnotation Special
     HiLink erlangTodo Todo
@@ -212,6 +228,7 @@ if version >= 508 || !exists ("did_erlang_inits")
 
     " erlang_keywords
     HiLink erlangDirective Type
+    HiLink erlangType Function
     HiLink erlangConstant Type
     HiLink erlangKeyword Keyword
     HiLink erlangProcess Special
