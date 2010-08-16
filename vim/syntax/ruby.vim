@@ -222,6 +222,8 @@ if !exists("b:ruby_no_expensive") && !exists("ruby_no_expensive")
   syn match  rubyDefine "\<alias\>"  nextgroup=rubyAliasDeclaration  skipwhite skipnl
   syn match  rubyDefine "\<def\>"    nextgroup=rubyMethodDeclaration skipwhite skipnl
   syn match  rubyDefine "\<undef\>"  nextgroup=rubyFunction	     skipwhite skipnl
+  syn match  rubyDefine "\<it\>"
+  syn match  rubyDefine "\<describe\>"
   syn match  rubyClass	"\<class\>"  nextgroup=rubyClassDeclaration  skipwhite skipnl
   syn match  rubyModule "\<module\>" nextgroup=rubyModuleDeclaration skipwhite skipnl
 
